@@ -528,12 +528,11 @@ def run_checkM(genome_folder,checkm_outf,**kwargs):
     drep.run_cmd(cmd, shell=False, logdir=logdir)
 
     # Load table
-    try:
-        chdb = pd.read_table(desired_file,sep='\t')
-    except:
-        logging.error("!!! checkM failed !!!\nIf using pyenv, make sure both python2 and " +\
-            "python3 are available (for example: pyenv global 3.5.1 2.7.9)")
-        sys.exit()
+    chdb = pd.read_table(desired_file,sep='\t')
+    # except:
+    #     logging.error("!!! checkM failed !!!\nIf using pyenv, make sure both python2 and " +\
+    #         "python3 are available (for example: pyenv global 3.5.1 2.7.9)")
+    #     sys.exit()
 
     # Return table
     return chdb
