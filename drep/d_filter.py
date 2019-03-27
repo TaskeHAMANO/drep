@@ -359,7 +359,7 @@ def _run_checkM_wrapper(bdb, workDirectory, **kwargs):
 
     # Run checkM
     logging.info("Running checkM")
-    checkM_outfolder = checkM_loc + 'checkM_outdir/'
+    checkM_outfolder = checkM_loc + 'checkM_outdir'
     Chdb = run_checkM(prod_folder, checkM_outfolder, wd=workDirectory, **kwargs)
     validate_chdb(Chdb, bdb)
 
@@ -496,12 +496,39 @@ def run_checkM(genome_folder,checkm_outf,**kwargs):
 
     # Run checkM initial
     if checkm_method == 'taxonomy_wf':
-         cmd = [check_exe,checkm_method,'domain','Bacteria',genome_folder,checkm_outf,'-f',\
-            checkm_outf + '/results.tsv','--tab_table','-t',str(t),'-g','-x','faa']
+        cmd = [
+            check_exe,
+            checkm_method,
+            'domain',
+            'Bacteria',
+            genome_folder,
+            checkm_outf,
+            '-f',
+            checkm_outf + '/results.tsv',
+            '--tab_table',
+            '-t',
+            str(t),
+            '-g',
+            '-x',
+            'faa'
+        ]
     else:
-         cmd = [check_exe,checkm_method,genome_folder,checkm_outf,'-f',\
-            checkm_outf + '/results.tsv','--tab_table','-t',str(t),'--pplacer_threads',\
-            str(t),'-g','-x','faa']
+        cmd = [
+            check_exe,
+            checkm_method,
+            genome_folder,
+            checkm_outf,
+            '-f',
+            checkm_outf + '/results.tsv',
+            '--tab_table',
+            '-t',
+            str(t),
+            '--pplacer_threads',
+            str(t),
+            '-g',
+            '-x',
+            'faa'
+        ]
 
     logging.debug("Running CheckM with command: {0}".format(cmd))
 
@@ -517,7 +544,7 @@ def run_checkM(genome_folder,checkm_outf,**kwargs):
     else:
         lineage = checkm_outf + 'lineage.ms'
     desired_file = checkm_outf + 'Chdb.tsv'
-    cmd = [check_exe,'qa', lineage, checkm_outf, '-f', desired_file, '-t',\
+    cmd = [check_exe, 'qa', lineage, checkm_outf, '-f', desired_file, '-t',\
             str(t), '--tab_table','-o', '2']
     logging.debug("Running CheckM with command: {0}".format(cmd))
 
