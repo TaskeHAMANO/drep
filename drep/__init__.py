@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from subprocess import call
+from subprocess import check_call
 import os
 from Bio import SeqIO
 import shutil
@@ -42,9 +42,9 @@ def run_cmd(cmd, dry=False, shell=True, logdir=False):
 
     # run the command
     if shell:
-        call(cmd,shell=True,stdout=sto, stderr=ste)
+        check_call(cmd,shell=True,stdout=sto, stderr=ste)
     else:
-        call(cmd,stdout=sto, stderr=ste)
+        check_call(cmd,stdout=sto, stderr=ste)
     return
 
 def thread_cmd_wrapper(tup):
